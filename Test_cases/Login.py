@@ -81,7 +81,10 @@ class APIAutomation:
 
 
 
-        print("LAMA MEMBER API END")
+
+
+
+        print("LAMA MEMBER API")
 
 
 api_automation = APIAutomation()
