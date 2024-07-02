@@ -77,14 +77,7 @@ class APIAutomation:
         }
         response = requests.get(url, headers=headers)
         print(response.json())
-
-
-
-
-
-
-
-        print("LAMA MEMBER API")
+        print("LAMA MEMBER API END")
 
 
 api_automation = APIAutomation()
