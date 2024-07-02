@@ -8,5 +8,4 @@ class Api_Automation_Infra:
         self.token = None
 
     def host_details(self):
-        url = "
-https://api.zoomview.ai/saas-zoomview/api/v1/infra/host"
+        url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/host"
