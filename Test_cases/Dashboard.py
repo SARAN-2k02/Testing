@@ -82,8 +82,10 @@ class APIAutomation:
 
 api_automation = APIAutomation()
 api_automation.login_valid_user()
-# api_automation.get_status()
-# api_automation.get_host_details()
-# api_automation.get_host_service()
-# api_automation.lama_overview_api()
+api_automation.get_status()
+api_automation.get_host_details()
+api_automation.get_host_service()
+api_automation.lama_overview_api()
 api_automation.lama_member_details()
+
+
