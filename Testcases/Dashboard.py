@@ -88,6 +88,7 @@ class APIAutomationDashboard:
         print(format_data)
 
         self.logger = logging.getLogger()
+        # print()
         self.logger.info("********************** --GET HOST DETAILS API END-- ******************************")
 
     def get_host_service(self):

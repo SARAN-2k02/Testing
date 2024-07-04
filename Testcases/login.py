@@ -32,6 +32,7 @@ class APIAutomation:
             print(f" Invalid Header : {response.headers['Content-Type']} is present")
 
         data = response.json()
+        # print()
         self.token = data["message"]["token"]
         format_data = json.dumps(data, indent=4)
         print("   ")
