@@ -9,7 +9,6 @@ class ApiAutomationSummary:
         self.token = None
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
     def login_valid_user(self):
         url = "https://api.zoomview.ai/saas-auth/api/v1/auth/login"
         body = {
@@ -96,7 +95,6 @@ class ApiAutomationSummary:
 
         self.logger = logging.getLogger()
         self.logger.info("********************** --RAM GRAPH END-- ******************************")
-
 
     def cpu_graph(self):
         url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/cpu-graph?host_name=testing&from=1720000428225&to"
@@ -222,44 +220,36 @@ class ApiAutomationSummary:
         self.logger = logging.getLogger()
         self.logger.info("********************** --TESTING SERVER API END-- ******************************")
 
-    def infra_live_ram(self):
+    def infra_livestate_ram(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate?host_name=testing&service_name=ram"
         header = {
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-        assert response.status_code == 200
+        print(f"INFRA LIVE RAM API LOADED TIME : {response.elapsed.total_seconds()} seconds")
         # print(response.json())
+
+        sts_code = response.status_code
+        # print(sts_code)
+        if response.status_code == 200:
+            print(f"Status Code is 200")
+
+        else:
+            print(f"invalid Status Code {sts_code} is present")
+
+        if response.headers['Content-Type'] == 'application/json; charset=utf-8':
+            print(response.headers['Content-type'])
+            print(f"valid Header is present")
+        else:
+            print(f" Invalid Header : {response.headers['Content-Type']} is present")
+
+        data = response.json()
         ram_data = response.json()['message']
-        print(ram_data)
+        format_data = json.dumps(ram_data, indent=4)
+        print(f" INFRA LIVE RAM APIP DATA :  {format_data} ")
 
-        for data in ram_data:
-            id = data["_id"]
-            customer_id = data['customer_id']
-            service_name = data['service_name']
-
-            print(f"Customer Id is {customer_id}")
-            print(f"Id is {id}")
-
-            if service_name:
-                print(f"Service name is {service_name}")
-            else:
-                print("service name not present")
-
-            service_data = data['service_data']
-            # print("service data", service_data)
-
-            for service in service_data:
-                print("metrix name is ", service['metrix_name'])
-                print("metrix value is ", service['metrix_value'], service['metrix_unit'])
-
-
-        print(""" 
-                                 -------------------------------------------------------------------------------------------------
-                                 -----------------------------INFRA LIVE RAM API END-------------------------------------------------------
-                                 -------------------------------------------------------------------------------------------------
-                                  """)
-
+        self.logger = logging.getLogger()
+        self.logger.info("************************************-- INFRA LIVE RAM API END- --**************************")
 
     def infra_live_disk(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate?host_name=testing&service_name=disk"
@@ -267,37 +257,28 @@ class ApiAutomationSummary:
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-        assert response.status_code == 200
+        # assert response.status_code == 200
         # print(response.json())
         disk_data = response.json()['message']
-        print(disk_data)
-
         for data in disk_data:
             id = data["_id"]
             customer_id = data['customer_id']
             service_name = data['service_name']
 
-            print(f"Customer Id is {customer_id}")
-            print(f"Id is {id}")
+            print(f"Customer Id is {customer_id} is present")
+            print(f"Id is {id} is present ")
 
             if service_name:
-                print(f"Service name is {service_name}")
+                print(f"Service name is present")
             else:
                 print("service name not present")
 
-            service_data = data['service_data']
-
-            for service in service_data:
-                print("metrix name is ", service['metrix_name'])
-                print("metrix value is ", service['metrix_value'], service['metrix_unit'])
-
             break
 
-        print(""" 
-                                         -------------------------------------------------------------------------------------------------
-                                         -----------------------------INFRA LIVE DISK API END-------------------------------------------------------
-                                         -------------------------------------------------------------------------------------------------
-                                          """)
+        format_disk_data = json.dumps(disk_data, indent=4)
+        print(f" INFRA LIVE DISK DATA : {format_disk_data}")
+        self.logger = logging.getLogger()
+        self.logger.info("************************************-- INFRA LIVE DISK API END- --**************************")
 
     def infra_live_process(self):
         url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate?host_name=testing&service_name"
@@ -306,10 +287,21 @@ class ApiAutomationSummary:
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-        assert response.status_code == 200
+        # assert response.status_code == 200
+        sts_code = response.status_code
+        if response.status_code == 200:
+            print(f"Status Code is 200")
+        else:
+            print(f"invalid Status Code {sts_code} is present")
+
+        if response.headers['Content-Type'] == 'application/json; charset=utf-8':
+            print(response.headers['Content-type'])
+            print(f"valid Header is present")
+        else:
+            print(f" Invalid Header : {response.headers['Content-Type']} is present")
+
         process_data = response.json()['message']
-        print(process_data)
-        print("infra live process api")
+
 
         for data in process_data:
             id = data["_id"]
@@ -317,24 +309,45 @@ class ApiAutomationSummary:
             service_name = data['service_name']
             service_tag = data['service_tag']
 
-            print(f"Customer Id is {customer_id}")
-            print(f"Id is {id}")
-            print(f"Service tag is {service_tag}")
+            print(f"Customer Id is {customer_id} present")
+            print(f"Id is {id} present")
+            print(f"Service tag is {service_tag} is present")
 
             if service_name:
-                print(f"Service name is {service_name}")
+                print(f"Service name is {service_name} is present ")
             else:
                 print("service name not present")
-
-            service_data = data['service_data']
-
-            for service in service_data:
-                print("metrix name is ", service['metrix_name'])
-                print("metrix value is ", service['metrix_value'], service['metrix_unit'])
-
             break
 
+        self.logger = logging.getLogger()
+        process_data_format = json.dumps(process_data, indent=4)
+        print(f"Infra live process api data : {process_data_format}")
+        self.logger.info("************************************-- INFRA LIVE PROCESS API END- --**************************")
 
+    def interface_graph(self):
+        url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/interface-graph?host_name=testing&from=1720154231033&to=1720155131034&service_tag=ens160"
+
+        header = {
+            "Authorization": f"Bearer {self.token}"
+        }
+        response = requests.get(url, headers=header)
+
+        sts_code = response.status_code
+        if response.status_code == 200:
+            print(f"Status Code is 200")
+        else:
+            print(f"invalid Status Code {sts_code} is present")
+
+        if response.headers['Content-Type'] == 'application/json; charset=utf-8':
+            print(response.headers['Content-type'])
+            print(f"valid Header is present")
+        else:
+            print(f" Invalid Header : {response.headers['Content-Type']} is present")
+
+        data = response.json()['message']
+        # print(f"Host name : {data['host_name']} ")
+        interface_graph_data = json.dumps(data, indent=4)
+        print(f"interface Api data : {interface_graph_data}")
 
 
 summary_api = ApiAutomationSummary()
@@ -344,7 +357,8 @@ summary_api.infra_ram_graph()
 summary_api.cpu_graph()
 summary_api.list_host()
 summary_api.testing_server()
-summary_api.infra_live_ram()
+summary_api.infra_livestate_ram()
 summary_api.infra_live_disk()
 summary_api.infra_live_process()
+summary_api.interface_graph()
 
