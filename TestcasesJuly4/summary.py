@@ -49,7 +49,7 @@ class ApiAutomationSummary:
                 format_data = json.dumps(service_data, indent=4)
                 print(f"Service data is {format_data} present ")
 
-            print("-----")
+
         self.logger = logging.getLogger()
         self.logger.info("********************** --INFRA LIVE STATE CPU API END-- ******************************")
 
@@ -331,8 +331,9 @@ class ApiAutomationSummary:
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-
         sts_code = response.status_code
+        print(f"INTERFACE GRAPH API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+
         if response.status_code == 200:
             print(f"Status Code is 200")
         else:
@@ -348,6 +349,8 @@ class ApiAutomationSummary:
         # print(f"Host name : {data['host_name']} ")
         interface_graph_data = json.dumps(data, indent=4)
         print(f"interface Api data : {interface_graph_data}")
+        self.logger = logging.getLogger()
+        self.logger.info("************************************-- INTERFACE GRAPH API END- --**************************")
 
 
 summary_api = ApiAutomationSummary()

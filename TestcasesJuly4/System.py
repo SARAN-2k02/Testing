@@ -61,7 +61,7 @@ class ApiAutomationSystem:
 
         print("--------")
         self.logger = logging.getLogger()
-        self.logger.info("********************** --CPU GRAPH API END-- ******************************")
+        self.logger.info(f"********************** --CPU GRAPH API END-- ******************************")
 
     def System_ram_graph(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/ram-graph?host_name=testing&from=1720162200296&to=1720163100296&service_tag=-"
@@ -167,7 +167,6 @@ class ApiAutomationSystem:
         ram_data = response.json()['message']
         format_data = json.dumps(ram_data, indent=4)
         print(f" INFRA LIVE RAM API DATA :  {format_data} ")
-
         self.logger = logging.getLogger()
         self.logger.info("************************************-- INFRA LIVE RAM API END- --**************************")
 
