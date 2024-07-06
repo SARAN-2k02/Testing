@@ -1,7 +1,7 @@
 import json
 import requests
 import logging
-import config
+import Config
 
 
 class ApiAutomationLama:
@@ -12,7 +12,7 @@ class ApiAutomationLama:
     def Customer_details(self):
         url = "https://api.zoomview.ai/saas-lama/api/coc/report/customer/details/UAT?datacenter="
         header = {
-            "Authorization": f"Bearer {config.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # print(response.json())

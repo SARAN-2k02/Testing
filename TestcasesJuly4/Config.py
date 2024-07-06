@@ -10,7 +10,9 @@ response = requests.post(url, json=body)
 assert response.status_code == 200
 data = response.json()
 token = data["message"]["token"]
-print(token)
+# token = ""
+# print(token)
+
 
 
 

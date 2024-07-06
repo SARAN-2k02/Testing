@@ -4,19 +4,19 @@ import logging
 import Config
 
 
-class ApiAutomationInfo:
+class ApiAutomationLama:
     def __init__(self):
         self.logger = None
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-    def host_info(self):
-        url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/hostinfo?host_name=testing"
+    def Uat_logs_one(self):
+        url = "https://api.zoomview.ai/saas-lama/api/coc/report/customer/details/UAT?datacenter="
         header = {
-            "Authorization": f"Bearer {config.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f" HOST INFO API LOADED TIME : {response.elapsed.total_seconds()} seconds")
         # print(response.json())
+        print(f" API LOADED TIME : {response.elapsed.total_seconds()} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -32,18 +32,18 @@ class ApiAutomationInfo:
 
         data = response.json()
         format_data = json.dumps(data, indent=4)
-        print(f" HOST INFO RESPONSE DATA :  {format_data} ")
+        print(f"  LAMA LOGS ONE API  RESPONSE DATA :  {format_data} ")
         self.logger = logging.getLogger()
-        self.logger.info("********************** --HOST INFO API END-- ******************************")
+        self.logger.info("********************** --UAT LOGS ONE API END-- ******************************")
 
-    def software_info(self):
-        url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/software-inventory?host_name=testing"
+    def Uat_log_two(self):
+        url = "https://api.zoomview.ai/saas-lama/api/coc/report/datalog/exchange_log/UAT?user_id=6653559ce24c5c262661c11c&from=1720240419194&to=1720241319194&log=system&exchange=all&datacenter="
         header = {
             "Authorization": f"Bearer {config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f" HOST INFO API LOADED TIME : {response.elapsed.total_seconds()} seconds")
         # print(response.json())
+        print(f" API LOADED TIME : {response.elapsed.total_seconds()} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -59,14 +59,11 @@ class ApiAutomationInfo:
 
         data = response.json()
         format_data = json.dumps(data, indent=4)
-        print(f" SOFTWARE INFO RESPONSE DATA :  {format_data} ")
+        print(f" LAMA LOGS TWO API  RESPONSE DATA :  {format_data} ")
         self.logger = logging.getLogger()
-        self.logger.info("********************** --SOFTWARE INFO API END-- ******************************")
+        self.logger.info("********************** --UAT LOGS TWO API END-- ******************************")
 
 
-Info_api = ApiAutomationInfo()
-Info_api.host_info()
-Info_api.software_info()
-
-
-
+Logs_api = ApiAutomationLama()
+Logs_api.Uat_logs_one()
+Logs_api.Uat_log_two()
