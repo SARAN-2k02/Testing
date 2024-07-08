@@ -1,29 +1,20 @@
 import json
 import requests
 import logging
+import Config
 
 
 class ApiAutomationSummary:
     def __init__(self):
         self.logger = None
-        self.token = None
+
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-    def login_valid_user(self):
-        url = "https://api.zoomview.ai/saas-auth/api/v1/auth/login"
-        body = {
-            "email": "anshul.reejonia@zybisys.com",
-            "password": "Demo@1234"
-        }
-        response = requests.post(url, json=body)
-        assert response.status_code == 200
-        data = response.json()
-        self.token = data["message"]["token"]
 
     def infra_live_state_cpu(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate?host_name=testing&service_name=cpu"
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         sts_code = response.status_code
@@ -57,7 +48,7 @@ class ApiAutomationSummary:
         url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/ram-graph?host_name=testing&from=1720000428225&to"
                "=1720001328225&service_tag=-")
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # assert response.status_code == 200
@@ -108,7 +99,7 @@ class ApiAutomationSummary:
                 break
 
         header = {
-            "Authorization": f"bearer {self.token}"
+            "Authorization": f"bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # print(response)
@@ -152,7 +143,7 @@ class ApiAutomationSummary:
     def list_host(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate/list?host_name=testing&service_name=interface"
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         assert response.status_code == 200
@@ -193,7 +184,7 @@ class ApiAutomationSummary:
     def testing_server(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/host_service_status/testing"
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
 
         response = requests.get(url, headers=header)
@@ -223,7 +214,7 @@ class ApiAutomationSummary:
     def infra_livestate_ram(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate?host_name=testing&service_name=ram"
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         print(f"INFRA LIVE RAM API LOADED TIME : {response.elapsed.total_seconds()} seconds")
@@ -254,7 +245,7 @@ class ApiAutomationSummary:
     def infra_live_disk(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate?host_name=testing&service_name=disk"
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # assert response.status_code == 200
@@ -284,7 +275,7 @@ class ApiAutomationSummary:
         url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/infra-livestate?host_name=testing&service_name"
                "=process")
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # assert response.status_code == 200
@@ -328,7 +319,7 @@ class ApiAutomationSummary:
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/interface-graph?host_name=testing&from=1720154231033&to=1720155131034&service_tag=ens160"
 
         header = {
-            "Authorization": f"Bearer {self.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         sts_code = response.status_code
@@ -354,7 +345,6 @@ class ApiAutomationSummary:
 
 
 summary_api = ApiAutomationSummary()
-summary_api.login_valid_user()
 summary_api.infra_live_state_cpu()
 summary_api.infra_ram_graph()
 summary_api.cpu_graph()

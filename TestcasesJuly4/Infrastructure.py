@@ -1,31 +1,22 @@
 import json
 import requests
 import logging
+import Config
 
 
 class ApiAutomationInfra:
     def __init__(self):
         self.logger = None
-        self.token = None
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-    def login_valid_user(self):
-        url = "https://api.zoomview.ai/saas-auth/api/v1/auth/login"
-        body = {
-            "email": "anshul.reejonia@zybisys.com",
-            "password": "Demo@1234"
-        }
-        response = requests.post(url, json=body)
-        assert response.status_code == 200
-        data = response.json()
-        self.token = data["message"]["token"]
+
 
 
 
     def host_details(self):
             url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/host"
             headers = {
-                "Authorization": f"Bearer {self.token}"
+                "Authorization": f"Bearer {Config.token}"
             }
             response = requests.get(url, headers=headers)
             print(f"API LOADED TIME : ", {response.elapsed.total_seconds()})
@@ -61,7 +52,7 @@ class ApiAutomationInfra:
     def overall_host(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/overall-host-service"
         header = {
-            "Authorization":f"Bearer {self.token}"
+            "Authorization":f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # assert response.status_code == 200
@@ -89,7 +80,6 @@ class ApiAutomationInfra:
 
 
 infra_api = ApiAutomationInfra()
-infra_api.login_valid_user()
 infra_api.host_details()
 infra_api.overall_host()
 
