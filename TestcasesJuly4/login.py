@@ -43,9 +43,11 @@ class APIAutomation:
         self.logger.info("********************** --LOGIN API END-- ******************************")
 
 
-
 login_api_automation = APIAutomation()
 login_api_automation.login_valid_user()
+
+
+
 
 
 

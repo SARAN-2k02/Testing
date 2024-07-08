@@ -39,23 +39,7 @@ class ApiAutomationProfile:
         self.logger = logging.getLogger()
         self.logger.info("********************** --PROFILE API END-- ******************************")
 
-    def edit_profile(self):
-        url = "https://api.zoomview.ai/saas-auth/api/v1/cust/profile"
-        body = {
-            "first_name": "Anshull",
-            "last_name": "Reejniaa",
-            "designation": "Maagerr",
-            "phone": "7454321759",
-            "company_name": "",
-            "address": "ganapathy nagar, trichy -44",
-            "pincode": 112345
-};
-
-        response = requests.put(url, json=body)
-        print(response)
-        print(response.status_code)
-
 
 profile_api = ApiAutomationProfile()
 profile_api.profile()
-profile_api.edit_profile()
+
