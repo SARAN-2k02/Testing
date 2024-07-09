@@ -74,3 +74,4 @@ class ApiAutomationLama:
 Setting_api = ApiAutomationLama()
 Setting_api.settings_host()
 Setting_api.settings_uat()
+
