@@ -28,7 +28,9 @@ class ApiAutomationProcess:
             "Authorization": f"bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-        print(f" API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" INFRA LIVE PROCESS API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -54,9 +56,11 @@ class ApiAutomationProcess:
             "Authorization": f"bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-        time.sleep(5)
+        time.sleep(4)
 
-        print(f" PROCESS GRAPH API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        Load_time = str(seconds)[0:4]
+        print(f" PROCESS GRAPH API LOADED TIME : {Load_time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -70,10 +74,10 @@ class ApiAutomationProcess:
         else:
             print(f" Invalid Header : {response.headers['Content-Type']} is present")
 
-        # print(response,"pavithra")
+
         time.sleep(10)
         data = response.json()
-        print("SARAN",data['message'])
+        # print("SARAN",data['message'])
         format_data = json.dumps(data, indent=4)
         print(f" PROCESS GRAPH API RESPONSE DATA :  {format_data} ")
         self.logger = logging.getLogger()

@@ -16,7 +16,9 @@ class ApiAutomationLama:
         }
         response = requests.get(url, headers=header)
         # print(response.json())
-        print(f" API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" UAT LOGS ONE API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -39,11 +41,13 @@ class ApiAutomationLama:
     def Uat_log_two(self):
         url = "https://api.zoomview.ai/saas-lama/api/coc/report/datalog/exchange_log/UAT?user_id=6653559ce24c5c262661c11c&from=1720240419194&to=1720241319194&log=system&exchange=all&datacenter="
         header = {
-            "Authorization": f"Bearer {config.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # print(response.json())
-        print(f" API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" UAT LOG TWO API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:

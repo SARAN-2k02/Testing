@@ -28,7 +28,10 @@ class ApiAutomationStorage:
         }
         response = requests.get(url, headers=header)
         sts_code = response.status_code
-        print(f" DISK GRAPH API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" DISK GRAPH API LOADED TIME : {time} seconds")
         if response.status_code == 200:
             print(f"Status code is 200")
         else:
@@ -56,7 +59,9 @@ class ApiAutomationStorage:
         }
         response = requests.get(url, headers=header)
         sts_code = response.status_code
-        print(f" INFRA LIVE DISK API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" INFRA LIVE DISK API LOADED TIME : {time} seconds")
 
         if response.status_code == 200:
             print(f"Status Code is 200")

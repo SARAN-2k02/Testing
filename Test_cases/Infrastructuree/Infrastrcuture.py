@@ -26,9 +26,11 @@ class ApiAutomationInfra:
         response = requests.get(url, headers=headers)
         assert response.status_code == 200
         Api_load = response.elapsed.total_seconds()
+        time = str(Api_load)[0:4]
+        print(f"HOST DETAILS API LOADED TIME : {time} seconds")
         # ss = str(Api_load)[:4]
         # print(ss)
-        print(f"API LOADED TIME : ", {response.elapsed.total_seconds()})
+
 
         host_data = response.json()
         # print(host_data)
@@ -52,12 +54,16 @@ class ApiAutomationInfra:
 
         response = requests.get(url, headers=header)
         assert response.status_code == 200
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"OVERALL HOST API LOADED TIME : {time} seconds")
+
         # print(response.json())
         overall_data = response.json()["message"]
         print(overall_data)
 
-        for status in overall_data:
-            print(status)
+
 
 
 

@@ -16,7 +16,9 @@ class ApiAutomationLama:
         }
         response = requests.get(url, headers=header)
         # print(response.json())
-        print(f" API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -39,11 +41,13 @@ class ApiAutomationLama:
     def Datacenter_details(self):
         url = "https://api.zoomview.ai/saas-lama/api/coc/report/overview/details/UAT?user_id=6653559ce24c5c262661c11c&datacenter="
         header = {
-            "Authorization": f"Bearer {config.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # print(response.json())
-        print(f" Datacenter Details API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" Datacenter Details API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -67,11 +71,13 @@ class ApiAutomationLama:
     def Exchange_details(self):
         url = "https://api.zoomview.ai/saas-lama/api/coc/report/overview/details/UAT?user_id=6653559ce24c5c262661c11c&datacenter="
         header = {
-            "Authorization": f"Bearer {config.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # print(response.json())
-        print(f" Exchange Details API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" Exchange Details API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:

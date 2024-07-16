@@ -16,7 +16,9 @@ class ApiAutomation_Saved_Filter:
         }
 
         response = requests.get(url, headers=header)
-        print(f"LOG view API LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"LOG view API LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 201:
@@ -44,7 +46,9 @@ class ApiAutomation_Saved_Filter:
         }
 
         response = requests.get(url, headers=header)
-        print(f"GRAPH BUILDER  API LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"GRAPH BUILDER  API LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -74,7 +78,9 @@ class ApiAutomation_Saved_Filter:
         }
 
         response = requests.post(url, headers=header)
-        print(f"ALL LOGS API LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"OPEN SEARCH API LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:
@@ -90,7 +96,7 @@ class ApiAutomation_Saved_Filter:
 
         data = response.json()
         format_data = json.dumps(data, indent=4)
-        print(f" ALL LOGS RESPONSE DATA :  {format_data} ")
+        print(f" OPEN SEARCH API RESPONSE DATA :  {format_data} ")
 
         print("   ")
         self.logger = logging.getLogger()

@@ -18,7 +18,9 @@ class ApiAutomationDocument:
             "Authorization": f"bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f" PLUGIN LIST WINDOWS API  LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" PLUGIN LIST WINDOWS API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 201:
@@ -46,7 +48,9 @@ class ApiAutomationDocument:
             "Authorization": f"bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f"PLUGIN LIST LINUX API LOADED TIME :{response.elapsed.total_seconds()} seconds ")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"PLUGIN LIST LINUX API LOADED TIME :{time} seconds ")
 
         sts_code = response.status_code == 201
         if sts_code:

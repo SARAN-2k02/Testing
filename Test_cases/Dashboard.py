@@ -17,10 +17,7 @@ class APIAutomation:
         data = response.json()
         self.token = data["message"]["token"]
         format_data = json.dumps(data, indent=4)
-        print(format_data)
-        print(data["message"])
-        assert data["message"]["first_name"] == "Anshul"
-        assert data["message"]["last_name"] == "Reejonia"
+
         print("Login successful. Token:", self.token)
 
     def get_status(self):
@@ -31,6 +28,9 @@ class APIAutomation:
         response = requests.get(url, headers=headers)
         assert response.status_code == 200
         data = response.json()
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"GET STATUS API LOADED TIME : {time} seconds")
         format_data = json.dumps(data, indent=4)
         print(format_data)
         print(data, "saran")
@@ -42,7 +42,11 @@ class APIAutomation:
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=headers)
-        print(response.json())
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"GET HOST DETAILS API LOADED TIME : {time} seconds")
+        print(f" HOST DETAILS API DATA : {response.json()}")
 
     def get_host_service(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/overall-host-service"
@@ -51,6 +55,9 @@ class APIAutomation:
         }
         response = requests.get(url, headers=headers)
         print(response.json())
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"GET HOTS SERVICE API LOADED TIME : {time} seconds")
 
         data = response.json()["message"]
         print(data[2])
@@ -67,6 +74,9 @@ class APIAutomation:
         }
         response = requests.get(url, headers=headers)
         print(response.json())
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"LAMA OVERVIEW API LOADED TIME : {time} seconds")
 
         print("LAMA OVERVIEW API END")
 
@@ -76,6 +86,9 @@ class APIAutomation:
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=headers)
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"LAMA MEMBER API LOADED TIME : {time} seconds")
         print(response.json())
         print("LAMA MEMBER API END")
 

@@ -19,6 +19,9 @@ class APIAutomation:
         response = requests.post(url, json=body)
         # assert response.status_code == 200
         sts_code = response.status_code
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"LOGIN API LOADED TIME : {time} seconds")
         # print(sts_code)
         if response.status_code == 200:
             print(f"Status Code is 200")

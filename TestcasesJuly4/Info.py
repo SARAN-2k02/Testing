@@ -12,10 +12,12 @@ class ApiAutomationInfo:
     def host_info(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/hostinfo?host_name=testing"
         header = {
-            "Authorization": f"Bearer {config.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f" HOST INFO API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" HOST INFO API LOADED TIME : {time} seconds")
         # print(response.json())
 
         sts_code = response.status_code
@@ -39,10 +41,12 @@ class ApiAutomationInfo:
     def software_info(self):
         url = "https://api.zoomview.ai/saas-zoomview/api/v1/infra/software-inventory?host_name=testing"
         header = {
-            "Authorization": f"Bearer {config.token}"
+            "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f" HOST INFO API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" HOST INFO API LOADED TIME : {time} seconds")
         # print(response.json())
 
         sts_code = response.status_code

@@ -16,8 +16,9 @@ class ApiAutomationForgetPass:
             "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-
-        print(f"FORGOT PASSWORD API  LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"FORGOT PASSWORD API  LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:

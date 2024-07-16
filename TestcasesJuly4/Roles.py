@@ -18,7 +18,9 @@ class ApiAutomationRoles:
             "Authorization": f"bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f"ROLES API  LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"ROLES API  LOAD TIME : {time} seconds")
         print(response.json())
 
         sts_code = response.status_code
@@ -52,7 +54,9 @@ class ApiAutomationRoles:
                 "Authorization": f"bearer {Config.token}"
             }
             response = requests.get(url, headers=header)
-            print(f"GROUP API  LOAD TIME : {response.elapsed.total_seconds()} seconds")
+            seconds = response.elapsed.total_seconds()
+            time = str(seconds)[0:4]
+            print(f"GROUP API  LOAD TIME : {time} seconds")
             print(response.json())
 
             sts_code = response.status_code
@@ -83,7 +87,9 @@ class ApiAutomationRoles:
             "Authorization": f"bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f"SUB CUSTOMER API  LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"SUB CUSTOMER API  LOAD TIME : {time} seconds")
         print(response.json())
 
         sts_code = response.status_code

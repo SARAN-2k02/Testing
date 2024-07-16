@@ -26,7 +26,9 @@ class ApiAutomationAlert:
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-        print(f" TESTING SERVER API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" TESTING SERVER API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 200:

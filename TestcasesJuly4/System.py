@@ -31,7 +31,10 @@ class ApiAutomationSystem:
         response = requests.get(url, headers=header)
         # print(response)
         sts_code = response.status_code
-        print(f"CPU GRAPH API LOADED TIME :  {response.elapsed.total_seconds()} seconds")
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"CPU GRAPH API LOADED TIME :  {time} seconds")
 
         if response.status_code == 200:
             print(f"Status Code is 200")
@@ -72,7 +75,9 @@ class ApiAutomationSystem:
         # assert response.status_code == 200
 
         sts_code = response.status_code
-        print(f"SYSTEM RAM GRAPH API LOADED TIME :  {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"SYSTEM RAM GRAPH API LOADED TIME :  {time} seconds")
         # print(sts_code)
         if response.status_code == 200:
             print(f"Status Code is 200")
@@ -113,7 +118,9 @@ class ApiAutomationSystem:
         }
         response = requests.get(url, headers=header)
         sts_code = response.status_code
-        print(f"INFRA LIVE STATE CPU API LOADED TIME :  {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INFRA LIVE STATE CPU API LOADED TIME :  {time} seconds")
 
         if response.status_code == 200:
             print(f"Status Code is 200")
@@ -146,7 +153,9 @@ class ApiAutomationSystem:
             "Authorization": f"Bearer {self.token}"
         }
         response = requests.get(url, headers=header)
-        print(f"INFRA LIVE RAM API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INFRA LIVE RAM API LOADED TIME : {time} seconds")
         # print(response.json())
 
         sts_code = response.status_code

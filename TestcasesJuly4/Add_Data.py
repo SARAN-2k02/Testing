@@ -16,7 +16,9 @@ class ApiAutomationAddData:
         }
 
         response = requests.get(url, headers=header)
-        print(f"LOG GROUP API LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"LOG GROUP API LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 201:
@@ -39,13 +41,15 @@ class ApiAutomationAddData:
         self.logger.info("********************** -LOG GROUP API END-- ******************************")
 
     def check_fluentbit(self):
-        url = "https://lab-api-zoomview.zybisys.com/saas-zoomview/api/v1/logmonitoring/get_log_group"
+        url = "https://lab-api-zoomview.zybisys.com/saas-zoomview/api/v1/real-time/WIN-KDPF1GGMQHI/query/check-fluent-bit"
         header = {
             "Authorization": f"bearer {Config.lab_token}"
         }
 
         response = requests.get(url, headers=header)
-        print(f"CHECK FLUENT BIT API LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"CHECK FLUENT BIT API LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 201:
@@ -79,7 +83,9 @@ class ApiAutomationAddData:
             "host_name": "WIN-KDPF1GGMQHI"
         }
         response = requests.post(url, headers=header, json=body)
-        print(f"SET LOG API LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"SET LOG API LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 201:

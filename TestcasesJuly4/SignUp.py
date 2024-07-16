@@ -15,8 +15,8 @@ class ApiAutomationSignUp:
             "first_name": "aron",
             "last_name": "raj",
             "designation": "Doctor",
-            "email": "rraajj@mail.com",
-            "phone": "7987369567",
+            "email": "hjraj@mail.com",
+            "phone": "9980389567",
             "password": "Demo@1234",
             "company_name": ""
         }
@@ -25,7 +25,9 @@ class ApiAutomationSignUp:
         }
         response = requests.post(url, json=body)
 
-        print(f" SIGNUP API  LOAD TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" SIGNUP API  LOAD TIME : {time} seconds")
 
         sts_code = response.status_code
         if response.status_code == 201:

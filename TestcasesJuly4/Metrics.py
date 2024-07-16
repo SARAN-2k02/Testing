@@ -28,7 +28,9 @@ class ApiAutomationMetrics:
         response = requests.get(url, headers=header)
 
         sts_code = response.status_code
-        print(f" METRICS DATA API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f" METRICS DATA API LOADED TIME : {time} seconds")
         if response.status_code == 200:
             print(f"Status Code is 200")
         else:

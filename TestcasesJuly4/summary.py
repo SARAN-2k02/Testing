@@ -7,7 +7,6 @@ import Config
 class ApiAutomationSummary:
     def __init__(self):
         self.logger = None
-
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
@@ -18,6 +17,10 @@ class ApiAutomationSummary:
         }
         response = requests.get(url, headers=header)
         sts_code = response.status_code
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INFRA LIVE STATE CPU API LOADED TIME : {time} seconds")
 
         if response.status_code == 200:
             print(f"Status Code is 200")
@@ -45,13 +48,16 @@ class ApiAutomationSummary:
         self.logger.info("********************** --INFRA LIVE STATE CPU API END-- ******************************")
 
     def infra_ram_graph(self):
-        url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/ram-graph?host_name=testing&from=1720000428225&to"
-               "=1720001328225&service_tag=-")
+        url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/ram-graph?host_name=fero007&from=1721111580227&to=1721112480227&service_tag=-")
         header = {
             "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
         # assert response.status_code == 200
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INFRA RAM GRAPH API LOADED TIME : {time} seconds")
 
         sts_code = response.status_code
         # print(sts_code)
@@ -88,20 +94,18 @@ class ApiAutomationSummary:
         self.logger.info("********************** --RAM GRAPH END-- ******************************")
 
     def cpu_graph(self):
-        url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/cpu-graph?host_name=testing&from=1720000428225&to"
-               "=1720001328225&service_tag=-")
-
-        cpu = "cpu-graph"
-
-        for cpu in url:
-            print(f"cpu-graph is present in API Url - it is cpu API")
-            if "cpu-graph":
-                break
+        print("cpu graph api start")
+        url = ("https://api.zoomview.ai/saas-zoomview/api/v1/infra/cpu-graph?host_name=fero007&from=1721111470894&to=1721112370895&service_tag=")
 
         header = {
             "Authorization": f"bearer {Config.token}"
         }
+
         response = requests.get(url, headers=header)
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"CPU GRAPH API LOADED TIME : {time} seconds")
+
         # print(response)
         sts_code = response.status_code
         if response.status_code == 200:
@@ -148,6 +152,10 @@ class ApiAutomationSummary:
         response = requests.get(url, headers=header)
         assert response.status_code == 200
         sts_code = response.status_code
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"LIST HOST API LOADED TIME : {time} seconds")
         # print(sts_code)
         if response.status_code == 200:
             print(f"Status Code is 200")
@@ -189,6 +197,10 @@ class ApiAutomationSummary:
 
         response = requests.get(url, headers=header)
         sts_code = response.status_code
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"TESTING SERVER API LOADED TIME : {time} seconds")
         # print(sts_code)
         if response.status_code == 200:
             print(f"Status Code is 200")
@@ -217,7 +229,10 @@ class ApiAutomationSummary:
             "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        print(f"INFRA LIVE RAM API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INFRA LIVE RAM API LOADED TIME : {time} seconds")
         # print(response.json())
 
         sts_code = response.status_code
@@ -248,8 +263,11 @@ class ApiAutomationSummary:
             "Authorization": f"Bearer {Config.token}"
         }
         response = requests.get(url, headers=header)
-        # assert response.status_code == 200
-        # print(response.json())
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INFRA LIVE DISK API LOADED TIME : {time} seconds")
+
         disk_data = response.json()['message']
         for data in disk_data:
             id = data["_id"]
@@ -280,6 +298,10 @@ class ApiAutomationSummary:
         response = requests.get(url, headers=header)
         # assert response.status_code == 200
         sts_code = response.status_code
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INFRA LIVE PROCESS API LOADED TIME : {time} seconds")
         if response.status_code == 200:
             print(f"Status Code is 200")
         else:
@@ -323,7 +345,10 @@ class ApiAutomationSummary:
         }
         response = requests.get(url, headers=header)
         sts_code = response.status_code
-        print(f"INTERFACE GRAPH API LOADED TIME : {response.elapsed.total_seconds()} seconds")
+
+        seconds = response.elapsed.total_seconds()
+        time = str(seconds)[0:4]
+        print(f"INTERFACE GRAPH API LOADED TIME : {time} seconds")
 
         if response.status_code == 200:
             print(f"Status Code is 200")
