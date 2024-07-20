@@ -40,8 +40,6 @@ class APIAutomation:
         format_data = json.dumps(data, indent=4)
         print("   ")
         print(f" LOGIN RESPONSE DATA :  {format_data} ")
-
-        print("------")
         self.logger = logging.getLogger()
         self.logger.info("********************** --LOGIN API END-- ******************************")
 
